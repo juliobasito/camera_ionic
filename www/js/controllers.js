@@ -62,6 +62,26 @@ angular.module('starter.controllers', [])
 // Controller tabs
 .controller('HomeCtrl', function($scope) {})
 
+//** PARTIE CAMERA **//
 .controller('CameraCtrl', function($scope) {})
+
+.controller('AddCameraCtrl', function($scope, $ionicModal, $http) {
+
+    //** Create modal
+    $ionicModal.fromTemplateUrl('templates/camera/addCamera.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+    $scope.closeAddCamera = function() {
+        $scope.modal.hide();
+    };
+    $scope.openAddCamera = function() {
+        $scope.modal.show();
+    };
+    //**//
+})
+//****//
+
 
 .controller('SettingsCtrl', function($scope) {});

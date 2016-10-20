@@ -72,6 +72,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
     }
   })
 
+  .state('addCamera', {
+    url: '/camera/addcamera',
+    templateUrl: 'templates/camera/addCamera.html',
+    controller: 'AddCameraCtrl'
+  })
+
   .state('tab.settings', {
     url: '/settings',
     views: {
@@ -83,6 +89,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/camera/addcamera');
 
 });
