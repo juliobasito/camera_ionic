@@ -1,22 +1,25 @@
 <ion-view hide-nav-bar="true">
-    <ion-content>
-        <div class="text-center" style="padding-top: 45%;">
-            <label style="font-size: 25px; font-weight: bold;">Camera IOT</label>
+    <ion-content class="contentlogin"> <!--scroll="false"-->
+        <div class="text-center">
+            <label>Camera IOT</label>
         </div>
 
         <form ng-submit="doLogin()">
-            <div class="list">
+            <div class="list" id="inputlogin">
                 <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" ng-model="loginData.username">
+                    <i class="icon ion-ios-person-outline placeholder-icon"></i>
+                    <input type="text" ng-model="loginData.username" placeholder="username">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Mot de passe</span>
-                    <input type="password" ng-model="loginData.password">
+                    <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+                    <input type="password" ng-model="loginData.password" placeholder="mot de passe">
                 </label>
-                <button class="button button-block button-positive" type="submit">Se connecter</button>
+                <button class="button button-block button-positive padding" type="submit">Se connecter</button>
             </div>
         </form>
-        <button class="button button-block button-positive" ng-controller="RegisterCtrl" ng-click="openRegister()">Vous n'avez pas de compte ?</button>
+        <div id="buttonsLogin">
+            <button ng-controller="RegisterCtrl" ng-click="openRegister()">Mot de passe oublié</button>
+            <button ng-controller="RegisterCtrl" ng-click="openRegister()">Inscription</button>
+        </div>
     </ion-content>
 </ion-view>

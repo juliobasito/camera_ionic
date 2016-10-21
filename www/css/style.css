@@ -1,1 +1,62 @@
-/* Empty. Add your own CSS if you like */
+/************ PARTIE LOGIN  **************/
+.contentlogin {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 38%;
+    background-image: url('../img/back_login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contentlogin > div:first-child label {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+.contentlogin form {
+    margin-top: 120px;
+}
+
+#inputlogin > label {
+    margin-top: 12px;
+    background-color: transparent;
+    border-color: white;
+    border-width: 2px;
+}
+
+#inputlogin ::-webkit-input-placeholder {
+    color: white;
+}
+
+#inputlogin > label i {
+    color: white;
+    font-size: 24px;
+}
+
+#inputlogin > label i:first-child {
+    font-size: 28px;
+}
+
+#inputlogin > label input {
+    color: white;
+    margin-left: 10px;
+}
+
+#inputlogin > button {
+    margin-top: 12px;
+}
+
+#buttonsLogin {
+    width: 100%;
+    margin-top: 15px;
+}
+#buttonsLogin > button {
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+#buttonsLogin > button:first-child { float: left; }
+#buttonsLogin > button:last-child { float: right; }
