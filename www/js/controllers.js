@@ -5,6 +5,11 @@ angular.module('starter.controllers', [])
     $scope.loginData = {};
     $scope.token = UserSrv.token;
 
+    console.log("LOGIN TOKEN :", UserSrv.token);
+    if(UserSrv.token != null || UserSrv.token != "") {
+        $state.go('tab.home');
+    }
+
     $scope.doLogin = function() {
         if ($scope.loginData.username == null || $scope.loginData.password == null) {
             $ionicPopup.alert({ title: 'Information', template: 'Veuillez remplir toutes les informations !'});
@@ -12,10 +17,12 @@ angular.module('starter.controllers', [])
             UserSrv.doLogin($scope.loginData.username, $scope.loginData.password).then(function(data){
                     console.log('ok');
                     console.log(data);
-                    $state.go('tab.home');
+                    if (data != null) {
+                        $state.go('tab.home');
+                    }
                 },
                 function(){
-                    console.log('Erreur');
+                    $ionicPopup.alert({ title: 'Erreur', template: 'Erreur lors de la récuperation de données !'});
                 }
             );
         }
@@ -23,7 +30,7 @@ angular.module('starter.controllers', [])
 })
 
 // Register
-.controller('RegisterCtrl', function($scope, $ionicModal, $http) {
+.controller('RegisterCtrl', function($scope, $ionicModal, $ionicPopup, $http) {
 
     //** Create modal
     $ionicModal.fromTemplateUrl('templates/register.html', {
@@ -50,11 +57,11 @@ angular.module('starter.controllers', [])
                 email: $scope.registerData.email,
                 lastname: $scope.registerData.lastname,
                 firstname: $scope.registerData.firstname }
-        }).then(function successCallback(response) {(
-            console.log(response),
-            $scope.modal.hide())
+        }).then(function successCallback(response) {
+            console.log(response);
+            $scope.modal.hide();
         }, function () {
-            console.log("rate");
+            $ionicPopup.alert({ title: 'Erreur', template: 'Erreur lors de la récuperation de données !'});
         });
     };
 })
@@ -84,4 +91,14 @@ angular.module('starter.controllers', [])
 //****//
 
 
-.controller('SettingsCtrl', function($scope) {});
+.controller('SettingsCtrl', function($scope, $state, $localStorage) {
+    $scope.deco = function() {
+        $localStorage.$reset();
+
+        // VOIR AVEC LE PROF POUR DIRE QUE SUR LA PAGE DE LOGIN LES INFORMATIONS SONT TJR AFFICHER.
+        /*
+         UserSrv ???
+         */
+        $state.go('login');
+    };
+});

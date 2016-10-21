@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.userservice'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.userservice', 'ngStorage'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state, UserSrv) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -18,9 +18,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
+
+    UserSrv.init();
+
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    // Partie pour check le token a chaque changement de page
+    $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
+      console.log(toState.authenticate);
+      console.log(UserSrv.token);
+      if(toState.authenticate === true && UserSrv.token == null){
+        $state.transitionTo('login');
+        event.preventDefault();
+      }
+    })
+
   });
 })
 
@@ -35,7 +49,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
+    controller: 'LoginCtrl',
+    authenticate: false
   })
 
   .state('register', {
@@ -59,7 +74,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
         templateUrl: 'templates/tab-home.html',
         controller: 'HomeCtrl'
       }
-    }
+    },
+    authenticate: true
   })
 
   .state('tab.camera', {
@@ -69,13 +85,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
         templateUrl: 'templates/tab-camera.html',
         controller: 'CameraCtrl'
       }
-    }
+    },
+    authenticate: true
   })
 
   .state('addCamera', {
     url: '/camera/addcamera',
     templateUrl: 'templates/camera/addCamera.html',
-    controller: 'AddCameraCtrl'
+    controller: 'AddCameraCtrl',
+    authenticate: true
   })
 
   .state('tab.settings', {
@@ -85,10 +103,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
         templateUrl: 'templates/tab-settings.html',
         controller: 'SettingsCtrl'
       }
-    }
+    },
+    authenticate: true
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/camera/addcamera');
+  $urlRouterProvider.otherwise('/login');
 
 });
