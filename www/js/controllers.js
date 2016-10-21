@@ -70,7 +70,11 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope) {})
 
 //** PARTIE CAMERA **//
-.controller('CameraCtrl', function($scope) {})
+.controller('CameraCtrl', function($scope, CameraSrv) {
+    $scope.getcamera = CameraSrv.getcamera().then(function(res){
+        $scope.cameras = res;
+    })
+})
 
 .controller('AddCameraCtrl', function($scope, $ionicModal, $http) {
 

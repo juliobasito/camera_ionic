@@ -4,6 +4,10 @@
     </ion-nav-buttons>
 
     <ion-content class="padding">
-        <h2>Ma caméra</h2>
+        <ion-list>
+            <ion-item ng-repeat="camera in cameras.cameras" href="{{camera.url}}">
+                {{camera.nom}}
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>
