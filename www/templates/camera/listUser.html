@@ -1,0 +1,30 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Liste d'utilisateur</h1>
+        <div class="buttons">
+            <button class="button" ng-click="closeListUser()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search">
+            </label>
+        </div>
+
+        <ion-list>
+            <ion-item class="item item-avatar" ng-repeat="userrole in camera.UserRoleCamera">
+                <img src="../../img/ionic.png">
+                <h2>Venkman</h2>
+                <select>
+                    <option>Blue</option>
+                    <option selected>Green</option>
+                    <option>Red</option>
+                </select>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-modal-view>

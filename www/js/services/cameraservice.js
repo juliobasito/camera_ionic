@@ -42,19 +42,4 @@ angular.module('starter.services.cameraservice', [])
             });
             return q.promise;
         };
-
-        this.cameraon = function ($id) {
-            $http({
-                method: 'POST',
-                url: 'http://localhost:1337/camera',
-                params: {id: $id},
-                body: {state: true},
-                headers: {
-                    Authorization: 'JWT ' + $localStorage.token
-                }
-            }).then(function successCallback(response) {
-            }, function () {
-                console.log("rate");
-            });
-        };
     });

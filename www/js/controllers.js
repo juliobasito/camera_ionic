@@ -113,10 +113,21 @@ angular.module('starter.controllers', [])
     })
 })
 
-.controller('ModifOnCameraCtrl', function($scope, CameraSrv) {
+.controller('ListUserCtrl', function($scope, $ionicModal, $http) {
 
-    //$scope.id = id;
-    $scope.CameraOn = function() {CameraSrv.cameraon('5')}
+    //** Create modal
+    $ionicModal.fromTemplateUrl('templates/camera/listUser.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+    $scope.closeListUser = function() {
+        $scope.modal.hide();
+    };
+    $scope.openListUser = function() {
+        $scope.modal.show();
+    };
+    //**//
 });
 //****//
 

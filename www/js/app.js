@@ -110,10 +110,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services.use
 
   .state('modifcamera', {
     url: '/camera/modifcamera',
-    templateUrl: 'templates/modifcamera.html',
+    templateUrl: 'templates/camera/modifcamera.html',
     controller: 'ModifCameraCtrl',
     authenticate: true,
     params: {id: ""}
+  })
+
+  .state('listUser', {
+    url: '/camera/listUser',
+    templateUrl: 'templates/camera/listUser.html',
+    controller: 'ListUserCtrl',
+    authenticate: true
   });
   //*******//
 
