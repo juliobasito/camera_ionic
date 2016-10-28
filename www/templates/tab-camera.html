@@ -5,7 +5,7 @@
 
     <ion-content class="padding">
         <ion-list>
-            <ion-item ng-repeat="camera in cameras.cameras" href="{{camera.url}}">
+            <ion-item ng-repeat="camera in cameras.cameras" ui-sref="modifcamera({id:camera.id})">
                 {{camera.nom}}
             </ion-item>
         </ion-list>

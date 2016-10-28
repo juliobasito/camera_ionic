@@ -45,12 +45,14 @@
 
 #inputlogin > button {
     margin-top: 12px;
+    /*background-color: #C3DEDD;*/
 }
 
 #buttonsLogin {
     width: 100%;
     margin-top: 15px;
 }
+
 #buttonsLogin > button {
     border: none;
     background-color: transparent;

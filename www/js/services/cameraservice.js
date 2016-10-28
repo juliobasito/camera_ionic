@@ -22,4 +22,39 @@ angular.module('starter.services.cameraservice', [])
             });
             return q.promise;
         };
+
+        this.getcamerabyid = function ($id) {
+            var q = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:1337/camera',
+                params: {id: $id},
+                headers: {
+                    Authorization: 'JWT ' + $localStorage.token
+                }
+            }).then(function successCallback(response) {
+                console.log(response);
+                q.resolve(response.data);
+            }, function () {
+                console.log("rate");
+                q.reject()
+            });
+            return q.promise;
+        };
+
+        this.cameraon = function ($id) {
+            $http({
+                method: 'POST',
+                url: 'http://localhost:1337/camera',
+                params: {id: $id},
+                body: {state: true},
+                headers: {
+                    Authorization: 'JWT ' + $localStorage.token
+                }
+            }).then(function successCallback(response) {
+            }, function () {
+                console.log("rate");
+            });
+        };
     });

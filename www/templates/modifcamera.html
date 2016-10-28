@@ -1,0 +1,13 @@
+<ion-view view-title="ModifCamera">
+    <ion-content class="padding">
+        {{camera.nom}}
+
+        <div ng-if="    camera.state == true">
+            <button class="button" ng-controller="ModifOnCameraCtrl" ng-click="CameraOff()">Eteindre la caméra</button>
+        </div>
+        <div ng-if="camera.state !=  true">
+            <button class="button" ng-controller="ModifOnCameraCtrl" ng-click="CameraOn({id: camera.id})">Allumer la Caméra</button>
+        </div>
+
+    </ion-content>
+</ion-view>

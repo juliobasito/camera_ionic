@@ -66,16 +66,29 @@ angular.module('starter.controllers', [])
     };
 })
 
-// Controller tabs
+//** Controller tabs **//
 .controller('HomeCtrl', function($scope) {})
 
-//** PARTIE CAMERA **//
 .controller('CameraCtrl', function($scope, CameraSrv) {
     $scope.getcamera = CameraSrv.getcamera().then(function(res){
         $scope.cameras = res;
     })
 })
 
+.controller('SettingsCtrl', function($scope, $state, $localStorage) {
+    $scope.deco = function() {
+        $localStorage.$reset();
+
+        // VOIR AVEC LE PROF POUR DIRE QUE SUR LA PAGE DE LOGIN LES INFORMATIONS SONT TJR AFFICHER.
+        /*
+         UserSrv ???
+         */
+        $state.go('login');
+    };
+})
+//*****//
+
+//** PARTIE CAMERA **//
 .controller('AddCameraCtrl', function($scope, $ionicModal, $http) {
 
     //** Create modal
@@ -92,17 +105,18 @@ angular.module('starter.controllers', [])
     };
     //**//
 })
+
+.controller('ModifCameraCtrl', function($scope, $stateParams, CameraSrv) {
+    $scope.id = $stateParams.id;
+    $scope.getcamerabyid = CameraSrv.getcamerabyid($scope.id).then(function(res){
+        $scope.camera = res;
+    })
+})
+
+.controller('ModifOnCameraCtrl', function($scope, CameraSrv) {
+
+    //$scope.id = id;
+    $scope.CameraOn = function() {CameraSrv.cameraon('5')}
+});
 //****//
 
-
-.controller('SettingsCtrl', function($scope, $state, $localStorage) {
-    $scope.deco = function() {
-        $localStorage.$reset();
-
-        // VOIR AVEC LE PROF POUR DIRE QUE SUR LA PAGE DE LOGIN LES INFORMATIONS SONT TJR AFFICHER.
-        /*
-         UserSrv ???
-         */
-        $state.go('login');
-    };
-});
