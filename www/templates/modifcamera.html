@@ -1,13 +1,38 @@
 <ion-view view-title="ModifCamera">
     <ion-content class="padding">
-        {{camera.nom}}
 
-        <div ng-if="    camera.state == true">
-            <button class="button" ng-controller="ModifOnCameraCtrl" ng-click="CameraOff()">Eteindre la caméra</button>
-        </div>
-        <div ng-if="camera.state !=  true">
-            <button class="button" ng-controller="ModifOnCameraCtrl" ng-click="CameraOn({id: camera.id})">Allumer la Caméra</button>
-        </div>
+        <form ng-submit=""> <!-- A REMPLIR -->
+            <div class="list">
+
+                <label class="item item-input">
+                    <span class="input-label">Nom de la caméra</span>
+                    <input type="text" ng-model="modifCamData.nom" placeholder="nom de la caméra" ng-value="camera.nom">
+                </label>
+
+                <div class="item item-toggle"> Etat
+                    <label class="toggle toggle-assertive">
+                        <input type="checkbox" ng-model="modifCamData.state" ng-init="camera.state" >
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+
+                <label class="item item-input">
+                    <span class="input-label">Liste des membres</span>
+                </label>
+
+                <ion-list ng-controller="ModifCameraCtrl">
+                    <ion-item class="item item-avatar" ng-repeat="userrole in camera.UserRoleCamera">
+                            <img src="../img/ionic.png">
+                            <h2>Venkman</h2>
+                            <p>Back off, man. I'm a scientist.</p>
+                    </ion-item>
+                </ion-list>
+
+                <button class="button button-block button-positive" type="submit">Valider</button>
+            </div>
+        </form>
 
     </ion-content>
 </ion-view>
