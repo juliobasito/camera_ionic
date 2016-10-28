@@ -10,14 +10,14 @@
         <div class="list list-inset">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" ng-model="pseudousers.data" ng-change="checkUsers()">
             </label>
         </div>
 
         <ion-list>
-            <ion-item class="item item-avatar" ng-repeat="userrole in camera.UserRoleCamera">
+            <ion-item class="item item-avatar" ng-repeat="user in user.pseudoUsers">
                 <img src="../../img/ionic.png">
-                <h2>Venkman</h2>
+                <h2>user.username</h2>
                 <select>
                     <option>Blue</option>
                     <option selected>Green</option>

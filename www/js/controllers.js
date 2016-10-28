@@ -20,6 +20,7 @@ angular.module('starter.controllers', [])
                     if (data != null) {
                         $state.go('tab.home');
                     }
+                    $scope.loginData = {};
                 },
                 function(){
                     $ionicPopup.alert({ title: 'Erreur', template: 'Erreur lors de la récuperation de données !'});
@@ -113,7 +114,7 @@ angular.module('starter.controllers', [])
     })
 })
 
-.controller('ListUserCtrl', function($scope, $ionicModal, $http) {
+.controller('ListUserCtrl', function($scope, $ionicModal, $q, $http, $localStorage) {
 
     //** Create modal
     $ionicModal.fromTemplateUrl('templates/camera/listUser.html', {
@@ -126,6 +127,32 @@ angular.module('starter.controllers', [])
     };
     $scope.openListUser = function() {
         $scope.modal.show();
+    };
+
+    $scope.pseudousers = {};
+
+    $scope.checkUsers = function() {
+        var q = $q.defer();
+        console.log("ANTOINE : " + $scope.pseudousers.data);
+        var ps = $scope.pseudousers.data;
+
+
+        $http({
+            method: 'GET',
+            url: 'http://localhost:1337/user/pseudo',
+            params: {usern: $scope.pseudousers.data},
+            headers: {
+                Authorization: 'JWT ' + $localStorage.token
+            }
+        }).then(function successCallback(response) {
+            $scope.tab_users = response;
+            console.log(response);
+            q.resolve(response.data);
+        }, function () {
+            console.log("rate");
+            q.reject()
+        });
+        return q.promise;
     };
     //**//
 });
